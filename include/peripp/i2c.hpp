@@ -1,3 +1,5 @@
+#pragma once
+
 #include <span>
 #include <system_error>
 #include <tl/expected.hpp>
