@@ -1,5 +1,2 @@
 [requires]
 tl-expected/20190710
-
-[generators]
-cmake_find_package
