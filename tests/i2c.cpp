@@ -1,5 +1,9 @@
 #include <catch2/catch_test_macros.hpp>
+#include <cstdlib>
+#include <filesystem>
 #include <peripp/i2c.hpp>
+
+namespace fs = std::filesystem;
 
 TEST_CASE("I2C creation", "[i2c][create]") {
   SECTION("Constructor with invalid path should throw an exception") {
@@ -10,5 +14,15 @@ TEST_CASE("I2C creation", "[i2c][create]") {
     auto result = peripp::I2C::create("/some/random/path");
     REQUIRE_FALSE(result.has_value());
     REQUIRE(result.error() == std::errc::no_such_file_or_directory);
+  }
+}
+
+TEST_CASE("I2C creation with a real bus", "[.real][i2c][create]") {
+  SECTION("Construct with valid path should succeed") {
+    auto bus_path = std::getenv("PERIPP_I2C_PATH");
+    INFO(bus_path);
+    if (bus_path != nullptr and fs::exists(bus_path)) {
+      REQUIRE_NOTHROW(peripp::I2C{std::getenv(bus_path)});
+    }
   }
 }
