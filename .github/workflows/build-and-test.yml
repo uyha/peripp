@@ -31,5 +31,4 @@ jobs:
       - name: Build
         run: cmake --build --preset debug
       - name: Run tests
-        run: ctest
-        working-directory: cmake-build-debug/tests
+        run: ctest --preset debug-unreal

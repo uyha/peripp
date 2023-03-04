@@ -48,5 +48,36 @@
       "name": "release",
       "configurePreset": "release"
     }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "debug-unreal",
+      "inherits": "default",
+      "configurePreset": "debug",
+      "filter": {
+        "include": {
+          "name": "-real$"
+        }
+      }
+    },
+    {
+      "name": "debug-real",
+      "configurePreset": "debug",
+      "output": {
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "name": "-real$"
+        }
+      }
+    }
   ]
 }
