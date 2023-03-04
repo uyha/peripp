@@ -15,5 +15,5 @@ endmacro()
 construct_test(test-i2c-unreal SOURCES i2c.cpp)
 target_link_libraries(test-i2c-unreal PRIVATE peripp::i2c)
 
-construct_test(test-i2c-real SOURCES i2c.cpp TEST_ARGUMENTS [.real],*)
-target_link_libraries(test-i2c-real PRIVATE peripp::i2c)
+construct_test(test-i2c-virtual SOURCES i2c.cpp TEST_ARGUMENTS [.virtual],*)
+target_link_libraries(test-i2c-virtual PRIVATE peripp::i2c)

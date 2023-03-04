@@ -67,12 +67,12 @@
       }
     },
     {
-      "name": "debug-real",
+      "name": "debug-virtual",
       "inherits": "default",
       "configurePreset": "debug",
       "filter": {
         "include": {
-          "name": "-real$"
+          "name": "-virtual$"
         }
       }
     }
