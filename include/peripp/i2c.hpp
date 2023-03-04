@@ -37,6 +37,6 @@ private:
   I2C(int m_handle) noexcept;
 
   int m_handle;
-  bool is_10_bit;
+  bool is_10_bit = false;
 };
 } // namespace peripp
