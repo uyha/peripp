@@ -19,12 +19,15 @@ TEST_CASE("I2C creation", "[i2c][create]") {
 
 TEST_CASE("I2C creation with a real bus", "[.real][i2c][create]") {
   auto bus_path = std::getenv("PERIPP_I2C_PATH");
-  if (bus_path == nullptr or not fs::exists(bus_path)) {
-    SKIP("No PERIPP_I2C_PATH defined, skipping tests");
+  if (bus_path == nullptr) {
+    SKIP("PERIPP_I2C_PATH is not defined, skipping tests");
+  }
+  if (not fs::exists(bus_path)) {
+    FAIL("PERIPP_I2C_PATH is defined but does not exist");
   }
 
   SECTION("Construct with valid path should succeed") {
-    REQUIRE_NOTHROW(peripp::I2C{std::getenv(bus_path)});
+    REQUIRE_NOTHROW(peripp::I2C{bus_path});
   }
 }
 
