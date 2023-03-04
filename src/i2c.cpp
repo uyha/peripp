@@ -65,7 +65,7 @@ auto I2C::set_7_bit() noexcept -> tl::expected<void, std::errc> {
 
 auto I2C::send(std::uint16_t slave_address, std::span<std::uint8_t> buffer) noexcept -> tl::expected<void, std::errc> {
   auto msg = ::i2c_msg{.addr  = slave_address,
-                       .flags = 0,
+                       .flags = static_cast<std::uint16_t>(is_10_bit ? I2C_M_TEN : 0),
                        .len   = static_cast<std::uint16_t>(std::size(buffer)),
                        .buf   = std::data(buffer)};
 
