@@ -28,19 +28,15 @@ public:
   auto functionality() const noexcept -> tl::expected<unsigned long, std::errc>;
 
 protected:
+  I2CBase(int m_handle) noexcept;
+
   int m_handle;
   bool is_10_bit = false;
-
-private:
-  I2CBase(int m_handle) noexcept;
 };
 } // namespace detail
 
 class I2C final : public detail::I2CBase<I2C> {
 public:
-  using I2CBase::I2CBase;
-  using I2CBase::operator=;
-
   auto send(std::uint16_t slave_address, std::span<std::uint8_t> buffer) noexcept -> tl::expected<void, std::errc>;
 
   template <typename... u8>
